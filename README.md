@@ -1,16 +1,17 @@
-### Hello
+# Customer Control Springboot Project
 
 ---
 
-## Adding a customer
+## About
 
+Este projeto foca na estrutura na lógica comercial entre clientes e negócios, utilizando Springboot.
 ```
-{
-"firstName": "Felipe", 
-"lastName": "Lopes",
-"phoneNumber": "123123",
-"city": "Umuarama",
-"age": 33
+
+"firstName": "string", 
+"lastName": "string",
+"phoneNumber": "numbers",
+"city": "string",
+"age": integer
 }
 ```
 

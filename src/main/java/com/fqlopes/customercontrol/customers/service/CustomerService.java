@@ -5,6 +5,7 @@ import com.fqlopes.customercontrol.customers.dto.CustomerResponseDto;
 import com.fqlopes.customercontrol.customers.entities.Customer;
 import com.fqlopes.customercontrol.customers.repository.CustomerRepository;
 import com.fqlopes.customercontrol.customers.service.exception.CustomerNotFoundException;
+import com.fqlopes.customercontrol.customers.service.exception.DuplicateResourceException;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,13 @@ public class CustomerService {
 
     //creation
     public CustomerResponseDto addCustomer(CustomerDto dto) {
+        if (repository.existsByEmail(dto.getEmail())) {
+            throw new DuplicateResourceException("Email already registered.");
+        }
+        if (repository.existsByPhoneNumber(dto.getPhoneNumber())) {
+            throw new DuplicateResourceException("Phone number already registered.");
+        }
+
         Customer customer = mapper.toCustomer(dto);
         Customer saved = repository.save(customer);
         return mapper.toCustomerResponseDto(saved);

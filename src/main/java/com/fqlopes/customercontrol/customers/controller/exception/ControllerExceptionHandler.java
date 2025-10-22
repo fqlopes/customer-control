@@ -1,6 +1,7 @@
 package com.fqlopes.customercontrol.customers.controller.exception;
 
 import com.fqlopes.customercontrol.customers.service.exception.CustomerNotFoundException;
+import com.fqlopes.customercontrol.customers.service.exception.DuplicateResourceException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -27,8 +28,25 @@ public class ControllerExceptionHandler {
         error.setMessage(e.getMessage());
         error.setPath(request.getDescription(false).replace("uri=", ""));
 
-        return ResponseEntity.status(HttpStatus.NOT_FOUND.value()).body(error);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
     }
+
+    //unique fields of customer already exists
+    @ExceptionHandler(DuplicateResourceException.class)
+    public ResponseEntity<StandardError> alreadyExists(DuplicateResourceException e, WebRequest request){
+
+        StandardError error = new StandardError();
+        error.setInstant(LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS));
+        error.setStatus(HttpStatus.CONFLICT.value());
+        error.setError("Already exists");
+        error.setMessage(e.getMessage());
+        error.setPath(request.getDescription(false).replace("uri=",""));
+
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(error);
+    }
+
+
+
 
     //missing parameters
     @ExceptionHandler(MethodArgumentNotValidException.class)
