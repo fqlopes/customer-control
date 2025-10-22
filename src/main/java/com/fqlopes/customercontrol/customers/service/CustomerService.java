@@ -1,16 +1,13 @@
 package com.fqlopes.customercontrol.customers.service;
 
-
 import com.fqlopes.customercontrol.customers.dto.CustomerDto;
 import com.fqlopes.customercontrol.customers.dto.CustomerResponseDto;
 import com.fqlopes.customercontrol.customers.entities.Customer;
 import com.fqlopes.customercontrol.customers.repository.CustomerRepository;
 import com.fqlopes.customercontrol.customers.service.exception.CustomerNotFoundException;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,17 +28,21 @@ public class CustomerService {
 
     //listing all
     public List<CustomerResponseDto> findAll(){
+
         return repository.findAll()
                 .stream()
                 .map(mapper::toCustomerResponseDto)
                 .collect(Collectors.toList());
+
     }
 
     //finding by id
     public CustomerResponseDto findById (Integer id){
+
         return repository.findById(id)
                 .map(mapper::toCustomerResponseDto)
                 .orElseThrow(() -> new CustomerNotFoundException("Customer with id " + id + " not found!"));
+
     }
 
     //update
@@ -52,9 +53,11 @@ public class CustomerService {
             mapper.updateCustomer(current, customerDto);
             Customer saved = repository.save(current);
         return mapper.toCustomerResponseDto(saved);
+
     }
 
     public void delete(@Valid Integer id) {
+
         Customer current = repository.findById(id)
                 .orElseThrow(() -> new CustomerNotFoundException("Customer with id " + id + " not found!"));
         repository.delete(current);

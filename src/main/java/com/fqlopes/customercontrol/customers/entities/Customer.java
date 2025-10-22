@@ -11,11 +11,12 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
+@Table(name = "customer")
 @NoArgsConstructor
 public class Customer {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column(updatable = false, nullable = false)
     @Setter(AccessLevel.NONE)
     private Integer id;
@@ -30,13 +31,6 @@ public class Customer {
     private String email;
 
     private String city;
-
-    public Customer(String firstName, String lastName, String phoneNumber, String city){
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
-        this.city = city;
-    }
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Deals> dealings = new ArrayList<>();

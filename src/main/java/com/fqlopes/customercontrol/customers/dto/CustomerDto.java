@@ -1,15 +1,18 @@
 package com.fqlopes.customercontrol.customers.dto;
 
 
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.util.List;
+
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class CustomerDto {
 
     @NotBlank (message = "First Name is required!")
@@ -28,5 +31,4 @@ public class CustomerDto {
     @NotBlank(message = "Your city location is required!")
     private String city;
 
-    private List<String> dealings;
 }
