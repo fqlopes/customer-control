@@ -10,5 +10,6 @@ public class DealsResponseDto {
     private Integer id;
     private String projectName;
     private Integer customerId;
+    private String customerName;
 
 }

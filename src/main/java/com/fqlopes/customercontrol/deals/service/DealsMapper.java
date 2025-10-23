@@ -18,6 +18,20 @@ public class DealsMapper {
     }
 
     public DealsResponseDto toDealsResponseDto (Deals deals){
-        return new DealsResponseDto(deals.getId(), deals.getProjectName(), deals.getCustomer().getId());
+
+        String customerName = "";
+        Integer customerId = null;
+
+        if (deals.getCustomer() != null){
+            customerId = deals.getCustomer().getId();
+            customerName = deals.getCustomer().getFirstName() + " " + deals.getCustomer().getLastName();
+        }
+
+        return new DealsResponseDto(
+                deals.getId(),
+                deals.getProjectName(),
+                customerId,
+                customerName
+                );
     }
 }
