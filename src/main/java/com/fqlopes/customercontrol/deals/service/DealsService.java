@@ -3,12 +3,13 @@ package com.fqlopes.customercontrol.deals.service;
 
 import com.fqlopes.customercontrol.customers.entities.Customer;
 import com.fqlopes.customercontrol.customers.repository.CustomerRepository;
+import com.fqlopes.customercontrol.deals.dto.UpdateDealDto;
 import com.fqlopes.customercontrol.exceptions.customer.CustomerNotFoundException;
 import com.fqlopes.customercontrol.deals.dto.DealsDto;
 import com.fqlopes.customercontrol.deals.dto.DealsResponseDto;
 import com.fqlopes.customercontrol.deals.entities.Deals;
 import com.fqlopes.customercontrol.deals.repository.DealsRepository;
-import com.fqlopes.customercontrol.deals.service.exception.DealNotFoundException;
+import com.fqlopes.customercontrol.exceptions.deals.DealNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +35,7 @@ public class DealsService {
     //creating
     public DealsResponseDto createDeal (DealsDto dto){
         Customer customer = customerRepository.findById(dto.getCustomerId())
-                .orElseThrow(() -> new CustomerNotFoundException(" Customer not Found!"));
+                .orElseThrow(() -> new CustomerNotFoundException(" Customer not found."));
 
         Deals deal = mapper.toDeals(dto);
         deal.setCustomer(customer);
@@ -45,7 +46,18 @@ public class DealsService {
     //find by Id
     public DealsResponseDto findById (Integer id){
         Deals deal = repository.findById(id)
-                .orElseThrow(() -> new DealNotFoundException("No such deal"));
+                .orElseThrow(() -> new DealNotFoundException("No such deal."));
         return mapper.toDealsResponseDto(deal);
+    }
+
+    public DealsResponseDto update(Integer id, UpdateDealDto dto) {
+        Deals current = repository.findById(id)
+                .orElseThrow(() -> new DealNotFoundException ("No such deal."));
+
+       mapper.updateDeal(current, dto);
+
+        Deals saved = repository.save(current);
+        return mapper.toDealsResponseDto(saved);
+
     }
 }

@@ -3,6 +3,7 @@ package com.fqlopes.customercontrol.deals.controller;
 
 import com.fqlopes.customercontrol.deals.dto.DealsDto;
 import com.fqlopes.customercontrol.deals.dto.DealsResponseDto;
+import com.fqlopes.customercontrol.deals.dto.UpdateDealDto;
 import com.fqlopes.customercontrol.deals.service.DealsService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -42,5 +43,15 @@ public class DealsController {
                 .toUri();
 
         return ResponseEntity.created(uri).body(saved);
+    }
+
+    //update an existing deal
+    @PutMapping("/deals/{id}")
+    public ResponseEntity<DealsResponseDto> updateDeal(@PathVariable Integer id,
+                                                       @RequestBody @Valid UpdateDealDto dto){
+
+        DealsResponseDto updated = service.update(id, dto);
+
+        return ResponseEntity.ok().body(updated);
     }
 }

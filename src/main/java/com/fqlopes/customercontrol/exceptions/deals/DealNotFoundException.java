@@ -1,4 +1,4 @@
-package com.fqlopes.customercontrol.deals.service.exception;
+package com.fqlopes.customercontrol.exceptions.deals;
 
 public class DealNotFoundException extends RuntimeException {
     public DealNotFoundException(String message) {

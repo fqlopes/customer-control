@@ -2,6 +2,7 @@ package com.fqlopes.customercontrol.exceptions.handler;
 
 import com.fqlopes.customercontrol.exceptions.customer.CustomerNotFoundException;
 import com.fqlopes.customercontrol.exceptions.customer.DuplicateResourceException;
+import com.fqlopes.customercontrol.exceptions.deals.DealNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -45,9 +46,6 @@ public class ControllerExceptionHandler {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(error);
     }
 
-
-
-
     //missing parameters
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<StandardError> wrongDataExceptions(MethodArgumentNotValidException e,
@@ -68,5 +66,19 @@ public class ControllerExceptionHandler {
         error.setPath(request.getDescription(false).replace("uri=", ""));
 
         return ResponseEntity.badRequest().body(error);
+    }
+
+    //deal not found
+    @ExceptionHandler(DealNotFoundException.class)
+    public ResponseEntity<StandardError> dealNotFound(DealNotFoundException e, WebRequest request){
+
+        StandardError error = new StandardError();
+        error.setInstant(LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS));
+        error.setStatus(HttpStatus.CONFLICT.value());
+        error.setError("Deal not found");
+        error.setMessage(e.getMessage());
+        error.setPath(request.getDescription(false).replace("uri=",""));
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
     }
 }
