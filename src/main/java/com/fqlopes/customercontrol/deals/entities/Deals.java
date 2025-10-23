@@ -1,10 +1,8 @@
 package com.fqlopes.customercontrol.deals.entities;
 
-
 import com.fqlopes.customercontrol.customers.entities.Customer;
 import jakarta.persistence.*;
 import lombok.Data;
-
 
 @Data
 @Entity

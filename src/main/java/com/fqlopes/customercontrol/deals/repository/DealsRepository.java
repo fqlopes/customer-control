@@ -10,6 +10,4 @@ public interface DealsRepository extends JpaRepository<Deals, Integer> {
     //track the customer id;
     List<Deals> findByCustomerId(Integer customerId);
 
-    //findAll
-
 }

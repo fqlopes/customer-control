@@ -1,7 +1,7 @@
-package com.fqlopes.customercontrol.customers.controller.exception;
+package com.fqlopes.customercontrol.exceptions.handler;
 
-import com.fqlopes.customercontrol.customers.service.exception.CustomerNotFoundException;
-import com.fqlopes.customercontrol.customers.service.exception.DuplicateResourceException;
+import com.fqlopes.customercontrol.exceptions.customer.CustomerNotFoundException;
+import com.fqlopes.customercontrol.exceptions.customer.DuplicateResourceException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;

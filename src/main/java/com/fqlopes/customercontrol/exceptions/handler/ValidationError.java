@@ -1,4 +1,4 @@
-package com.fqlopes.customercontrol.customers.controller.exception;
+package com.fqlopes.customercontrol.exceptions.handler;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

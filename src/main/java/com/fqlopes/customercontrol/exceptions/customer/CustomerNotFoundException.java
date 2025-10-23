@@ -1,4 +1,4 @@
-package com.fqlopes.customercontrol.customers.service.exception;
+package com.fqlopes.customercontrol.exceptions.customer;
 
 public class CustomerNotFoundException extends RuntimeException{
     public CustomerNotFoundException(String message){
