@@ -1,6 +1,5 @@
 package com.fqlopes.customercontrol.customers.controller;
 
-
 import com.fqlopes.customercontrol.customers.dto.CustomerDto;
 import com.fqlopes.customercontrol.customers.dto.CustomerResponseDto;
 import com.fqlopes.customercontrol.customers.service.CustomerService;

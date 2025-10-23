@@ -5,7 +5,7 @@ import com.fqlopes.customercontrol.customers.dto.CustomerResponseDto;
 import com.fqlopes.customercontrol.customers.entities.Customer;
 import com.fqlopes.customercontrol.customers.repository.CustomerRepository;
 import com.fqlopes.customercontrol.exceptions.customer.CustomerNotFoundException;
-import com.fqlopes.customercontrol.exceptions.customer.DuplicateResourceException;
+import com.fqlopes.customercontrol.exceptions.generic.DuplicateResourceException;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,7 @@
 package com.fqlopes.customercontrol.exceptions.handler;
 
 import com.fqlopes.customercontrol.exceptions.customer.CustomerNotFoundException;
-import com.fqlopes.customercontrol.exceptions.customer.DuplicateResourceException;
+import com.fqlopes.customercontrol.exceptions.generic.DuplicateResourceException;
 import com.fqlopes.customercontrol.exceptions.deals.DealNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,7 +39,7 @@ public class ControllerExceptionHandler {
         StandardError error = new StandardError();
         error.setInstant(LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS));
         error.setStatus(HttpStatus.CONFLICT.value());
-        error.setError("Already exists");
+        error.setError("Conflict");
         error.setMessage(e.getMessage());
         error.setPath(request.getDescription(false).replace("uri=",""));
 

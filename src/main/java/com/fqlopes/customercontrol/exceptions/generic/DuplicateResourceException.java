@@ -1,4 +1,4 @@
-package com.fqlopes.customercontrol.exceptions.customer;
+package com.fqlopes.customercontrol.exceptions.generic;
 
 public class DuplicateResourceException extends RuntimeException {
     public DuplicateResourceException(String message) {

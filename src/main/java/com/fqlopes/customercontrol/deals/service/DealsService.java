@@ -10,6 +10,7 @@ import com.fqlopes.customercontrol.deals.dto.DealsResponseDto;
 import com.fqlopes.customercontrol.deals.entities.Deals;
 import com.fqlopes.customercontrol.deals.repository.DealsRepository;
 import com.fqlopes.customercontrol.exceptions.deals.DealNotFoundException;
+import com.fqlopes.customercontrol.exceptions.generic.DuplicateResourceException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +35,12 @@ public class DealsService {
 
     //creating
     public DealsResponseDto createDeal (DealsDto dto){
+
+        //check if a project name is taken
+        if(repository.existsByProjectName(dto.getProjectName())){
+            throw new DuplicateResourceException("Project " + dto.getProjectName() + " is taken");
+        }
+
         Customer customer = customerRepository.findById(dto.getCustomerId())
                 .orElseThrow(() -> new CustomerNotFoundException(" Customer not found."));
 
@@ -52,8 +59,16 @@ public class DealsService {
 
     //update
     public DealsResponseDto update(Integer id, UpdateDealsDto dto) {
+
+        //check if customer exists
         Deals current = repository.findById(id)
                 .orElseThrow(() -> new DealNotFoundException ("No such deal."));
+
+        //checking if the new project name is not taken
+        if (!current.getProjectName()
+                .equals(dto.getProjectName()) && repository.existsByProjectName(dto.getProjectName())){
+            throw new DuplicateResourceException("Project " + dto.getProjectName() + " is taken");
+        }
 
        mapper.updateDeals(current, dto);
 
@@ -65,5 +80,7 @@ public class DealsService {
     public void delete (Integer id){
         Deals current = repository.findById(id)
                 .orElseThrow(() -> new DealNotFoundException("No such deal"));
+
+        repository.delete(current);
     }
 }

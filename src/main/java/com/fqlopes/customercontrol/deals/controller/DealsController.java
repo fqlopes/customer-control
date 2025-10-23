@@ -1,6 +1,5 @@
 package com.fqlopes.customercontrol.deals.controller;
 
-
 import com.fqlopes.customercontrol.deals.dto.DealsDto;
 import com.fqlopes.customercontrol.deals.dto.DealsResponseDto;
 import com.fqlopes.customercontrol.deals.dto.UpdateDealsDto;
