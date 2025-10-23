@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UpdateDealDto {
+public class UpdateDealsDto {
 
     @NotBlank
     private String projectName;

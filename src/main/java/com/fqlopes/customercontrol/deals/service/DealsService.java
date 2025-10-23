@@ -3,7 +3,7 @@ package com.fqlopes.customercontrol.deals.service;
 
 import com.fqlopes.customercontrol.customers.entities.Customer;
 import com.fqlopes.customercontrol.customers.repository.CustomerRepository;
-import com.fqlopes.customercontrol.deals.dto.UpdateDealDto;
+import com.fqlopes.customercontrol.deals.dto.UpdateDealsDto;
 import com.fqlopes.customercontrol.exceptions.customer.CustomerNotFoundException;
 import com.fqlopes.customercontrol.deals.dto.DealsDto;
 import com.fqlopes.customercontrol.deals.dto.DealsResponseDto;
@@ -50,14 +50,20 @@ public class DealsService {
         return mapper.toDealsResponseDto(deal);
     }
 
-    public DealsResponseDto update(Integer id, UpdateDealDto dto) {
+    //update
+    public DealsResponseDto update(Integer id, UpdateDealsDto dto) {
         Deals current = repository.findById(id)
                 .orElseThrow(() -> new DealNotFoundException ("No such deal."));
 
-       mapper.updateDeal(current, dto);
+       mapper.updateDeals(current, dto);
 
         Deals saved = repository.save(current);
         return mapper.toDealsResponseDto(saved);
+    }
 
+    //delete
+    public void delete (Integer id){
+        Deals current = repository.findById(id)
+                .orElseThrow(() -> new DealNotFoundException("No such deal"));
     }
 }

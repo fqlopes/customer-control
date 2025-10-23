@@ -2,7 +2,7 @@ package com.fqlopes.customercontrol.deals.service;
 
 import com.fqlopes.customercontrol.deals.dto.DealsDto;
 import com.fqlopes.customercontrol.deals.dto.DealsResponseDto;
-import com.fqlopes.customercontrol.deals.dto.UpdateDealDto;
+import com.fqlopes.customercontrol.deals.dto.UpdateDealsDto;
 import com.fqlopes.customercontrol.deals.entities.Deals;
 import org.springframework.stereotype.Component;
 
@@ -34,12 +34,14 @@ public class DealsMapper {
                 customerId,
                 customerName
                 );
+
     }
 
-    public void updateDeal (Deals current, UpdateDealDto dealsDto){
+    public void updateDeals(Deals current, UpdateDealsDto dealsDto){
 
         current.setProjectName(dealsDto.getProjectName());
         current.setAddress(dealsDto.getAddress());
         current.setDetails(dealsDto.getDetails());
+
     }
 }

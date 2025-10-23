@@ -31,7 +31,6 @@ public class CustomerMapper {
 
     public CustomerResponseDto toCustomerResponseDto (Customer customer){
 
-        //
         List<DealsResponseDto> deals = customer.getDealings().stream()
                 .map(dealsMapper::toDealsResponseDto)
                 .toList();
