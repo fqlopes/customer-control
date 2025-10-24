@@ -1,7 +1,8 @@
 # Customer & Deals Management API
 
----
 
+---
+[Leia em Português](README.pt-BR.md)
 ## Overview
 
 A RESTful Spring Boot API for managing **Customers** and their business **Deals**.
@@ -11,7 +12,7 @@ This project provides:
 - CRUD
 - Bidirectional Relationship
 - Error Validation and structured error messages
-- PostgreSQL auto-schema generation
+- Auto-schema generation
 
 ### Stack
 
