@@ -22,6 +22,33 @@ This project provides:
 - Maven
 
 ---
+## How to run
+
+### 1. Requirements
+- Java 17 or higher
+- Maven 3.8+
+- PostgreSQL running locally with a database named `customer_control`
+
+>[!NOTE]
+> Credentials for the PostgreSQL should be edited. They are located in: src/main/resources/application.yaml
+
+### 2. Get the Project
+`git clone https://github.com/fqlopes/customer-control.git`
+
+`cd customer-control`
+
+### 3. Run
+With Maven:
+
+`mvn spring-boot:run`
+
+Or build JAR:
+
+`mvn clean package`
+
+`java -jar target/customercontrol-0.0.1-SNAPSHOT.jar`
+
+---
 
 ## API Endpoints
 
